@@ -212,7 +212,7 @@ This inserts sample job data for matching.
 
 ## project live 
 
-https://resume-parser-ai-job-matching.vercel.app/
+https://resume-parser-chi.vercel.app/
 
 ---
 
