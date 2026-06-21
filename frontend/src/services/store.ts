@@ -1,6 +1,6 @@
 import type { Candidate, Job } from "@/types";
 
-const API_URL = "https://resume-parser-qfvf.onrender.com";
+const API_URL = "https://resume-parser-qfvf.onrender.com/api";
 
 export async function getJobs(): Promise<Job[]> {
   const res = await fetch(`${API_URL}/jobs`);
@@ -31,5 +31,9 @@ export async function saveCandidate(candidate: Candidate) {
     body: JSON.stringify(candidate),
   });
 
-  return res.json();
+  if (!res.ok) {
+    throw new Error("Failed to save candidate");
+  }
+
+  return await res.json();
 }

@@ -51,18 +51,31 @@ export default function UploadPage() {
 }
   };
 
-  const handleSave = (data: CandidateFormData) => {
+  const handleSave = async (data: CandidateFormData) => {
+  try {
     setIsSaving(true);
+
     const candidate = {
       id: crypto.randomUUID(),
       ...data,
       resumeFile: fileName,
       createdAt: new Date().toISOString(),
     };
-    saveCandidate(candidate);
+
+    const savedCandidate = await saveCandidate(candidate);
+
     toast.success("Candidate saved successfully!");
-    setTimeout(() => navigate(`/candidate/${candidate.id}`), 500);
-  };
+
+    setTimeout(() => {
+     navigate(`/candidate/${savedCandidate._id}`);
+    }, 500);
+  } catch (error) {
+    console.error(error);
+    toast.error("Failed to save candidate");
+  } finally {
+    setIsSaving(false);
+  }
+};
 
   return (
     <div className="container max-w-3xl py-8 space-y-8">
