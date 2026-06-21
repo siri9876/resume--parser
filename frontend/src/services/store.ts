@@ -1,6 +1,6 @@
 import type { Candidate, Job } from "@/types";
 
-const API_URL = "http://localhost:5000/api";
+const API_URL = "https://resume-parser-qfvf.onrender.com";
 
 export async function getJobs(): Promise<Job[]> {
   const res = await fetch(`${API_URL}/jobs`);
